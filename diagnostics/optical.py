@@ -2,7 +2,7 @@ from vex import *
 
 # Initialize brain and optical sensor
 brain = Brain()
-optical_sensor = Optical(Ports.PORT4)
+optical_sensor = Optical(Ports.PORT1)
 
 def main():
     brain.screen.clear_screen()
