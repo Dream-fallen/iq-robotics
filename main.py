@@ -16,13 +16,19 @@ left_status_led = Touchled(Ports.PORT1)
 right_status_led = Touchled(Ports.PORT6)
 
 def main():
+    # --- DEFINE YOUR UNIQUE CUSTOM RGB COLORS HERE ---
+    # format: Color(Red, Green, Blue) from 0 to 255
+    color_ready = Color(0, 180, 160)     # Clean Teal / Turquoise 
+    color_moving = Color(160, 0, 255)    # Vibrant Electric Purple
+    color_flash = Color(255, 90, 95)     # Bright Coral Pink
+    
     brain.screen.clear_screen()
     brain.screen.set_cursor(1, 1)
     brain.screen.print("Drive Mode: TANK")
     
-    # LEDs turn green immediately to show they are ready to test
-    left_status_led.set_color(Color.GREEN) 
-    right_status_led.set_color(Color.GREEN) 
+    # LEDs turn to your unique ready color immediately
+    left_status_led.set_color(color_ready) 
+    right_status_led.set_color(color_ready) 
     
     # Deadband threshold to prevent motor humming/drifting when joysticks are centered
     deadband = 10 
@@ -32,8 +38,8 @@ def main():
     toggle_was_pressed = False  # For button debouncing
     
     # LED indicator flash tracking (in milliseconds)
-    orange_flash_duration = 300  
-    orange_timer = 0             
+    flash_duration = 300  
+    flash_timer = 0             
     
     while True:
         # --- TOGGLE LOGIC WITH DEBOUNCING ---
@@ -42,7 +48,7 @@ def main():
                 is_tank_drive = not is_tank_drive  
                 toggle_was_pressed = True          
                 
-                orange_timer = orange_flash_duration
+                flash_timer = flash_duration
                 
                 brain.screen.clear_screen()
                 brain.screen.set_cursor(1, 1)
@@ -97,20 +103,20 @@ def main():
             
 
         # --- LED COLOR LOGIC WITH FLASH PRIORITIZATION ---
-        if orange_timer > 0:
-            left_status_led.set_color(Color.ORANGE)
-            right_status_led.set_color(Color.ORANGE)
-            orange_timer -= 20
+        if flash_timer > 0:
+            left_status_led.set_color(color_flash)
+            right_status_led.set_color(color_flash)
+            flash_timer -= 20
         else:
             if left_moving:
-                left_status_led.set_color(Color.BLUE)
+                left_status_led.set_color(color_moving)
             else:
-                left_status_led.set_color(Color.GREEN)
+                left_status_led.set_color(color_ready)
                 
             if right_moving:
-                right_status_led.set_color(Color.BLUE)
+                right_status_led.set_color(color_moving)
             else:
-                right_status_led.set_color(Color.GREEN)
+                right_status_led.set_color(color_ready)
             
         wait(20, MSEC)
 
