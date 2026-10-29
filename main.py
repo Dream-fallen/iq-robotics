@@ -18,9 +18,9 @@ right_status_led = Touchled(Ports.PORT6)
 def main():
     # --- DEFINE YOUR UNIQUE CUSTOM RGB COLORS HERE ---
     # format: Color(Red, Green, Blue) from 0 to 255
-    color_ready = Color(0, 180, 160)     # Clean Teal / Turquoise 
-    color_moving = Color(160, 0, 255)    # Vibrant Electric Purple
-    color_flash = Color(255, 90, 95)     # Bright Coral Pink
+    color_ready = Color(100, 255, 100)     # Pastel Green
+    color_moving = Color(100, 100, 255)    # Pastel Blue
+    color_flash = Color(255, 100, 100)     # Pastel Red
     
     brain.screen.clear_screen()
     brain.screen.set_cursor(1, 1)
