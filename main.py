@@ -8,15 +8,14 @@ con = Controller()
 
 # Initialize your drive motors 
 left_motor = Motor(Ports.PORT7)
-right_motor = Motor(Ports.PORT12, True) # True reverses this side
-back_shared_motor = Motor(Ports.PORT9)  # <--- Your new third motor 
+right_motor = Motor(Ports.PORT12, True) # True reverses motor direction
+back_shared_motor = Motor(Ports.PORT9)  # TODO: Add 4th motor
 
 # Initialize your Touch LEDs
 left_status_led = Touchled(Ports.PORT1)
 right_status_led = Touchled(Ports.PORT6)
 
 def main():
-    # --- DEFINE YOUR UNIQUE CUSTOM RGB COLORS HERE ---
     # format: Color(Red, Green, Blue) from 0 to 255
     color_ready = Color(100, 255, 100)     # Pastel Green
     color_moving = Color(100, 100, 255)    # Pastel Blue
